@@ -1,8 +1,6 @@
 "use client"; 
 
 import { useState, useEffect } from "react";
-
-
 interface Task {
   id: number;
   text: string;

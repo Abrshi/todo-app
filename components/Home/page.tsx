@@ -45,16 +45,15 @@ export default function Home() {
   };
 
   return (
-    <main className="p-4 max-w-fit mx-auto">
+    <main className="p-4 max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">To-Do List</h1>
 
-    
       <div className="flex mb-4 max-w-xl mx-auto">
         <input
           type="text"
           placeholder="Enter task..."
           className="border p-2 w-full mb-2"
-          value={task} 
+          value={task}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
         />
@@ -62,38 +61,38 @@ export default function Home() {
           onClick={() => {
             if (task.trim()) {
               addTask(task);
-              setTask(""); 
+              setTask("");
             }
           }}
-          className="ml-2 px-5  h-11 rounded-sm bg-green-500 text-white"
+          className="ml-2 px-5 h-11 rounded-sm bg-green-500 text-white"
         >
           Add
         </button>
       </div>
 
-      {tasks.length>0? <h2 className="text-xl font-bold mb-4">Tasks</h2> : <h2 className="text-xl font-bold mb-4">you have no tasks for now</h2>}
+      {tasks.length > 0 ? (
+        <h2 className="text-xl font-bold mb-4">Tasks</h2>
+      ) : (
+        <h2 className="text-xl font-bold mb-4">You have no tasks for now</h2>
+      )}
       <ul>
-      {tasks.map((task) => (
+        {tasks.map((task) => (
           <li key={task.id} className="flex justify-between items-center p-2 border-b">
-            <span
-              className={task.completed ? "line-through text-gray-500" : ""}
-            >
+            <span className={task.completed ? "line-through text-gray-500" : ""}>
               {task.text}
             </span>
-           <div className="space-x-2">
-           <span
-              onClick={() => toggleComplete(task.id)}
-                  >
-              {task.completed ? <span className="text-green-500">complited</span> : <span className="text-yellow-500">pending</span>}
-            </span>
-           <button
-              onClick={() => deleteTask(task.id)}
-              className="text-red-500"
-            >
-              remove
-            </button>
-           </div>
-            
+            <div className="space-x-2">
+              <span onClick={() => toggleComplete(task.id)}>
+                {task.completed ? (
+                  <span className="text-green-500">Completed</span>
+                ) : (
+                  <span className="text-yellow-500">Pending</span>
+                )}
+              </span>
+              <button onClick={() => deleteTask(task.id)} className="text-red-500">
+                Remove
+              </button>
+            </div>
           </li>
         ))}
       </ul>
